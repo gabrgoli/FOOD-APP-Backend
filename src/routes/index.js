@@ -28,7 +28,13 @@ const getIngredients = (recipe) =>{
         ingredientes.push(ingredient.name)
       })
     })   
-    return ingredientes                                                                          
+
+  // FUNCION QUE ELIMINAR LOS ELEMNTOS REPETIDOS
+  let arrayNoRepeatElement = ingredientes.filter((ingrediente,index)=>{
+    return ingredientes.indexOf(ingrediente) === index;
+  })
+
+  return arrayNoRepeatElement                                                                          
 }
 
 //FUNCION QUE GUARDA LOS DATOS EN LA BDD, RECIBE UN ARRAY DE RECETAS QUE VIENEN DE LA API
@@ -149,10 +155,11 @@ const getAllRecipes = async () => {
   const infoTotal = trabajarConAPI ? apiInfo.concat(dbInfo):dbInfo;
 
   // FUNCION QUE ELIMINAR LOS ELEMNTOS REPETIDOS
-  let arrayRecipesNoRepeatElement = infoTotal.filter((recipe,index)=>{
+  let arrayNoRepeatElement = infoTotal.filter((recipe,index)=>{
     return infoTotal.indexOf(recipe) === index;
-})
-  return arrayRecipesNoRepeatElement;
+  })
+
+  return arrayNoRepeatElement;
 
 };
 
