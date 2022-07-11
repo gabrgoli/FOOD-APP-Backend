@@ -398,7 +398,7 @@ router.post("/recipe", async (req, res, next) => {
     recipeCreated.addIngredient(ingredientDb); //CREA LA RELACION  ENTRE TABLAS RECETAS E INGREDIENTES
   });
 
-  res.send("receta cargada con exito");
+  res.json("receta cargada con exito");
 });
 
 module.exports = router;
