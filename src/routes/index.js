@@ -388,7 +388,7 @@ router.post("/recipe", async (req, res, next) => {
     recipeCreated.addTipoDeDieta(dietaDb); //CREA LA RELACION ENTRE TABLAS RECETA Y DIETAS
   });
 
-  ingredients.map((ingredient) => {
+  /*ingredients?.map((ingredient) => {
     ingredient.findOrCreate({ where: { name: ingredient } });  // GUARDA LOS INGREDIENTES QUE VIENEN POR PARAMETRO EN LA BDD
   });
   
@@ -396,7 +396,7 @@ router.post("/recipe", async (req, res, next) => {
 
   ingredientsDb.map((ingredientDb) => {
     recipeCreated.addIngredient(ingredientDb); //CREA LA RELACION  ENTRE TABLAS RECETAS E INGREDIENTES
-  });
+  });*/
 
   res.json("receta cargada con exito");
 });
