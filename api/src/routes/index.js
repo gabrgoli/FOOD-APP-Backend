@@ -10,8 +10,8 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-let trabajarConAPI=false;
-let guardarApiEnBDD=false;
+let trabajarConAPI=true;
+let guardarApiEnBDD=true;
 
 const getInstructions = (recipe) =>{
   let texto=''
