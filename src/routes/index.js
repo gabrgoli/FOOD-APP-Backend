@@ -10,8 +10,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-let trabajarConAPI=false;
-let guardarApiEnBDD=false;
+let guardarApiEnBDD=true;
 
 const getInstructions = (recipe) =>{
   let texto=''
@@ -150,9 +149,9 @@ let returnRecipes=[]
 };
 
 const getAllRecipes = async () => {
-  const apiInfo = trabajarConAPI ?await getApiInfo():null;
+  const apiInfo = guardarApiEnBDD ?await getApiInfo():null;
   const dbInfo = await getDataBaseInfo();
-  const infoTotal = trabajarConAPI ? apiInfo.concat(dbInfo):dbInfo;
+  const infoTotal = guardarApiEnBDD ? apiInfo.concat(dbInfo):dbInfo;
 
   // FUNCION QUE ELIMINAR LOS ELEMNTOS REPETIDOS
   let arrayNoRepeatElement = infoTotal.filter((recipe,index)=>{
@@ -227,7 +226,7 @@ const searchByIdAtDB = async (id) => {
 
 //BUSCA UNA RECETA EN LA API Y BDD SEGUN EL ID
 const searchById = async (id) => {
-  const apiRecipeProm = trabajarConAPI? searchByIdAtApi(id) : '';
+  const apiRecipeProm = guardarApiEnBDD? searchByIdAtApi(id) : '';
   const dbRecipeProm = searchByIdAtDB(id);
 
   const [apiRecipe, dbRecipe] = await Promise.all([
