@@ -6,13 +6,14 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const {CORS_URL} = process.env;
 
+const listaBlanca=['http://localhost:3000','http://localhost:3001','https://food-app-frontend-ar1pfxfc7-gabrgoli.vercel.app','https://food-app-recetas.herokuapp.com']
 
 require('./db.js');
 
 const server = express();
-
 server.name = 'API';
-server.use(cors());
+//server.use(cors());
+server.use(cors({origin:listaBlanca})); //para permitir solo los URL de la listaBlanca
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
