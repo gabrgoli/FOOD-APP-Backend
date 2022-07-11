@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const {CORS_URL} = process.env;
 
-const listaBlanca=['http://localhost:3000','http://localhost:3001','https://food-app-frontend-ar1pfxfc7-gabrgoli.vercel.app','https://food-app-recetas.herokuapp.com']
+const listaBlanca=['http://localhost:3000','http://localhost:3001','https://food-app-frontend-ar1pfxfc7-gabrgoli.vercel.app','https://food-app-recetas.herokuapp.com,https://food-app-frontend-virid.vercel.app/']
 
 require('./db.js');
 
