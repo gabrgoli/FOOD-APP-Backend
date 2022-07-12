@@ -241,6 +241,7 @@ const searchById = async (id) => {
 router.get("/recipes", async (req, res) => {
  
   const name = req.query.name;  //GUARDA EN VARIABLE name LO QUE VIENE POR QUERY
+  const startServer = req.query.startServer; 
   let allRecipes = await getAllRecipes();// TRAE TODAS LAS RECETAS
   if (name) { //SI VIENE name POR QUERY REALIZA UN FILTRO DE LAS RECETAS PARA BUSCAR RECETAS CON NOMBRE QUE INCLUYAN A name
     let recipeName = await allRecipes.filter((el) =>el.title.toLowerCase().includes(name.toLowerCase())); 
@@ -248,7 +249,11 @@ router.get("/recipes", async (req, res) => {
       res.status(200).send(recipeName)
     :
       res.status(404).send("no esta la receta"); // SI NO SE ENCONTRO RECETA QUE INCLUYA AL NOMBRE name, ENTONCES NO ENCONTRO LA RECETA
-  } else { // SI NO SE RECIBE NADA POR QUERY ENTONCES
+  } 
+  else if(startServer){
+    res.status(200).send("okLocoalServer");
+  }
+  else { // SI NO SE RECIBE NADA POR QUERY ENTONCES
     res.status(200).send(allRecipes); // DEVUELVE TODAS LAS RECETAS
   }
 });
