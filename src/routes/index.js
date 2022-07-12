@@ -10,12 +10,21 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+
 let guardarApiEnBDD=false;
 
+// const getInstructions = (recipe) =>{
+//   let texto=''
+//     recipe.analyzedInstructions[0]?.steps.map((e)=>{
+//       texto=`${texto} Step ${e.number}) ${e.step}`
+//     })   
+//     return texto                                                                          
+// }
+
 const getInstructions = (recipe) =>{
-  let texto=''
-    recipe.analyzedInstructions[0]?.steps.map((e)=>{
-      texto=`${texto} Step ${e.number}) ${e.step}`
+  let texto=[]
+    recipe.analyzedInstructions[0]?.steps.map((e,i)=>{
+      texto.push(`Step ${i+1}) ${e.step}`)
     })   
     return texto                                                                          
 }
@@ -101,6 +110,7 @@ const getApiInfo = async () => {
     };
   } );
   //console.log("dietsParaBDD",apiInfo[4].dietsParaBDD) //dietsParaBDD [ 'gluten free', 'dairy free', 'fodmap friendly', 'pescatarian' ]
+  //console.log("instructions",apiInfo[5].instructions)
   guardarApiEnBDD && saveDataFromApiInBDD(apiInfo);
   return apiInfo;
 };

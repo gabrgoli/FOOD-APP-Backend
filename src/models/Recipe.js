@@ -30,8 +30,9 @@ module.exports = (sequelize) => {
       defaultValue: 0,
     },
     instructions: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
+    
     image:{
       type: DataTypes.STRING(12345),
     },

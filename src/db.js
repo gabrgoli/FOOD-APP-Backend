@@ -7,7 +7,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST,DB_NAME,DB_USER_LOCAL,DB_PASSWORD_LOCAL,DB
 const sequelize = new Sequelize(
  // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/d86984nq4rv11h`,
  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
- //`postgres://${DB_USER_LOCAL}:${DB_PASSWORD_LOCAL}@${DB_HOST_LOCAL}/food`,
+//`postgres://${DB_USER_LOCAL}:${DB_PASSWORD_LOCAL}@${DB_HOST_LOCAL}/food`,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
