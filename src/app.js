@@ -1,5 +1,5 @@
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -12,7 +12,7 @@ require('./db.js');
 //'https://food-app-frontend-virid.vercel.app'
 const server = express();
 server.name = 'API';
-//server.use(cors());
+server.use(cors());
 //server.use(cors({origin:listaBlanca})); //para permitir solo los URL de la listaBlanca
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
