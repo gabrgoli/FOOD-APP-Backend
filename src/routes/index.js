@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-let guardarApiEnBDD=false;
+let guardarApiEnBDD=true;
 
 // const getInstructions = (recipe) =>{
 //   let texto=''
@@ -260,9 +260,7 @@ router.get("/recipes", async (req, res) => {
     :
       res.status(404).send("no esta la receta"); // SI NO SE ENCONTRO RECETA QUE INCLUYA AL NOMBRE name, ENTONCES NO ENCONTRO LA RECETA
   } 
-  else if(startServer){
-    res.status(200).send("okLocoalServer");
-  }
+
   else { // SI NO SE RECIBE NADA POR QUERY ENTONCES
     res.status(200).send(allRecipes); // DEVUELVE TODAS LAS RECETAS
   }
@@ -339,12 +337,12 @@ router.get("/ingredients", async (req, res) => {
         }
       })
     );
-    ingredients.forEach((e) => {
+   /* ingredients.forEach((e) => {
       Ingredient.findOrCreate({
         //where: { name: e[0].toUpperCase()+e.substring(1) },
         where: { name: e }
       });
-    });
+    });*/
     const allresults = await Ingredient.findAll({
       attributes: ["name"],
     });
@@ -359,14 +357,6 @@ router.get("/ingredients", async (req, res) => {
   }
 });
 
-
-/*
-[ ] POST /recipe:
-Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
-Crea una receta en la base de datos
-*/
-
-/* */
 
 // RUTA PARA CREAR UNA RECETA 
 router.post("/recipe", async (req, res, next) => {
