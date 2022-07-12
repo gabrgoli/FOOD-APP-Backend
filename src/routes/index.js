@@ -11,28 +11,28 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-let guardarApiEnBDD=true;
+let guardarApiEnBDD=false;
+
+/*const getInstructions = (recipe) =>{
+  let texto=''
+    recipe.analyzedInstructions[0]?.steps?.map((e)=>{
+      texto=`${texto} Step ${e.number}) ${e.step}`
+    })   
+    return texto                                                                          
+}*/
 
 const getInstructions = (recipe) =>{
-  let texto=''
-    recipe.analyzedInstructions[0]?.steps.map((e)=>{
-      texto=`${texto} Step ${e.number}) ${e.step}`
+  let texto=[]
+    recipe.analyzedInstructions[0]?.steps.map((e,i)=>{
+      texto.push(`Step ${i+1}) ${e.step}`)
     })   
     return texto                                                                          
 }
 
-// const getInstructions = (recipe) =>{
-//   let texto=[]
-//     recipe.analyzedInstructions[0]?.steps.map((e,i)=>{
-//       texto.push(`Step ${i+1}) ${e.step}`)
-//     })   
-//     return texto                                                                          
-// }
-
 const getIngredients = (recipe) =>{
   let ingredientes=[]
     recipe.analyzedInstructions[0]?.steps.map((step)=>{
-      step.ingredients.map((ingredient)=>{
+      step.ingredients?.map((ingredient)=>{
         ingredientes.push(ingredient.name)
       })
     })   
@@ -59,25 +59,25 @@ const saveDataFromApiInBDD = (recipesInApi) =>{
         //ingredients: recipe?.ingredients
       }});
      // GUARDA TODAS LAS DIETAS QUE VIENEN EN LA FUNCION getAllRecipes
-     recipe?.dietsParaBDD.map((tipoDieta) => {
+     recipe?.dietsParaBDD?.map((tipoDieta) => {
       TipoDeDieta.findOrCreate({ where: { name: tipoDieta } });
     });
     //traigo todas las  dietas de la BDD
     let dietsDb = await TipoDeDieta.findAll({ where: { name: recipe.dietsParaBDD } });//
     //entiendo quecarga en la tabla que une recetas con dietas, las dietas con su numero de receta que corresponde
-    dietsDb.map((dietaDb) => {
+    dietsDb?.map((dietaDb) => {
       recipeCreated.addTipoDeDieta(dietaDb); //agregale tipo de dieta que coinciden con el nombre de dieta
     });
   
   
     // GUARDA LOS INGREDIENTES QUE VIENEN POR PARAMETRO EN LA BDD
-    recipe?.ingredients.map((ingredient) => {
+    recipe?.ingredients?.map((ingredient) => {
       Ingredient.findOrCreate({ where: { name: ingredient } });
     });
     
     let ingredientsDb = await Ingredient.findAll({ where: { name: recipe.ingredients } });//traigo todos los ingredientes de la BDD
     
-    ingredientsDb.map((ingredientDb) => {
+    ingredientsDb?.map((ingredientDb) => {
       recipeCreated.addIngredient(ingredientDb); //CREA LA RELACION ENTRE TABLA INGREDIENTES Y RECETAS
     });
 
