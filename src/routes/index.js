@@ -13,21 +13,21 @@ const router = Router();
 
 let guardarApiEnBDD=true;
 
-// const getInstructions = (recipe) =>{
-//   let texto=''
-//     recipe.analyzedInstructions[0]?.steps.map((e)=>{
-//       texto=`${texto} Step ${e.number}) ${e.step}`
-//     })   
-//     return texto                                                                          
-// }
-
 const getInstructions = (recipe) =>{
-  let texto=[]
-    recipe.analyzedInstructions[0]?.steps.map((e,i)=>{
-      texto.push(`Step ${i+1}) ${e.step}`)
+  let texto=''
+    recipe.analyzedInstructions[0]?.steps.map((e)=>{
+      texto=`${texto} Step ${e.number}) ${e.step}`
     })   
     return texto                                                                          
 }
+
+// const getInstructions = (recipe) =>{
+//   let texto=[]
+//     recipe.analyzedInstructions[0]?.steps.map((e,i)=>{
+//       texto.push(`Step ${i+1}) ${e.step}`)
+//     })   
+//     return texto                                                                          
+// }
 
 const getIngredients = (recipe) =>{
   let ingredientes=[]
