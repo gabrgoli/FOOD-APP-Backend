@@ -71,13 +71,13 @@ const saveDataFromApiInBDD = (recipesInApi) =>{
   
   
     // GUARDA LOS INGREDIENTES QUE VIENEN POR PARAMETRO EN LA BDD
-    recipe?.ingredients?.map((ingredient) => {
+    recipe?.ingredients?.map(async(ingredient) => {
       await Ingredient.findOrCreate({ where: { name: ingredient } });
     });
     
     let ingredientsDb = await Ingredient.findAll({ where: { name: recipe.ingredients } });//traigo todos los ingredientes de la BDD
     
-    ingredientsDb?.map((ingredientDb) => {
+    ingredientsDb?.map(async(ingredientDb) => {
       await recipeCreated.addIngredient(ingredientDb); //CREA LA RELACION ENTRE TABLA INGREDIENTES Y RECETAS
     });
 
