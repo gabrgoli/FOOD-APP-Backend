@@ -302,12 +302,14 @@ router.get("/types", async (req, res) => {
     );
 
     //GUARDA LAS DIETAS EN LA BDD QUE VIENEN DE LA API SIN REPETIR
-    /*types.forEach((e) => {
+    types.forEach((e) => {
       TipoDeDieta.findOrCreate({
         //where: { name: e[0].toUpperCase()+e.substring(1) },
         where: { name: e }
       });
-    });*/
+    });
+
+
     //ELIMINAR DIETA DE LA BASE DE DATOS
     /*await TipoDeDieta.destroy({
       where:{name:"dairy free"}
