@@ -302,13 +302,13 @@ router.get("/types", async (req, res) => {
     );
 
     //GUARDA LAS DIETAS EN LA BDD QUE VIENEN DE LA API SIN REPETIR
-    types.forEach((e) => {
+   /* types.forEach((e) => {
       TipoDeDieta.findOrCreate({
         //where: { name: e[0].toUpperCase()+e.substring(1) },
         where: { name: e }
       });
     });
-
+*/
 
     //ELIMINAR DIETA DE LA BASE DE DATOS
     /*await TipoDeDieta.destroy({
@@ -318,15 +318,19 @@ router.get("/types", async (req, res) => {
     //await TipoDeDieta.create({ name: "dairy free" });
 
     //TRAE TODOS LOS TIPOS DE DIETAS DE LA BASE DE DATOS
-    const allresults = await TipoDeDieta.findAll({
+    /*const allresults = await TipoDeDieta.findAll({
       attributes: ["name"],
     });
 
+      // FUNCION QUE ELIMINAR LOS ELEMNTOS REPETIDOS
+  let arrayNoRepeatElement = allresults.filter((recipe,index)=>{
+    return allresults.indexOf(recipe) === index;
+  })*/
+
     
     // DEVUELVE TODAS LAS DIETAS, CON UN ARRAY DE OBJETOS
-    res.send(
-      allresults.map((e) => {
-        return {name: e.name} ;
+    res.send(types.map((e) => {
+        return {name: e} ;
       })
     );
   } catch (error) {
