@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-let guardarApiEnBDD=false;
+let guardarApiEnBDD=true;
 
 /*const getInstructions = (recipe) =>{
   let texto=''
@@ -41,6 +41,8 @@ const getIngredients = (recipe) =>{
   let arrayNoRepeatElement = ingredientes.filter((ingrediente,index)=>{
     return ingredientes.indexOf(ingrediente) === index;
   })
+
+
 
   return arrayNoRepeatElement                                                                          
 }
@@ -286,8 +288,8 @@ router.get("/recipes/:idReceta", async (req, res, next) => {
 router.get("/types", async (req, res) => {
   try {
     const types = [];
-    //const recipesApi = await getApiInfo();
-    const recipesApi = await getAllRecipes();
+    const recipesApi = await getApiInfo();
+    //const recipesApi = await getAllRecipes();
     const dietsApi = recipesApi.map((recipe) => recipe?.diets);
 
     //GUARDA EN EL ARRAY TYPES TODOS LOS TIPOS DE DIETA QUE HAY EN LA API, PERO SIN REPETIR
@@ -300,22 +302,29 @@ router.get("/types", async (req, res) => {
     );
 
     //GUARDA LAS DIETAS EN LA BDD QUE VIENEN DE LA API SIN REPETIR
-    types.forEach((e) => {
+    /*types.forEach((e) => {
       TipoDeDieta.findOrCreate({
         //where: { name: e[0].toUpperCase()+e.substring(1) },
         where: { name: e }
       });
-    });
+    });*/
+    //ELIMINAR DIETA DE LA BASE DE DATOS
+    /*await TipoDeDieta.destroy({
+      where:{name:"dairy free"}
+    })*/
+    //CREAR UNA DIETA EN LA BASE DE DATOS
+    //await TipoDeDieta.create({ name: "dairy free" });
 
     //TRAE TODOS LOS TIPOS DE DIETAS DE LA BASE DE DATOS
     const allresults = await TipoDeDieta.findAll({
       attributes: ["name"],
     });
 
+    
     // DEVUELVE TODAS LAS DIETAS, CON UN ARRAY DE OBJETOS
     res.send(
       allresults.map((e) => {
-        return { name: e.name };
+        return {name: e.name} ;
       })
     );
   } catch (error) {
