@@ -288,8 +288,8 @@ router.get("/recipes/:idReceta", async (req, res, next) => {
 router.get("/types", async (req, res) => {
   try {
     const types = [];
-    const recipesApi = await getApiInfo();
-    //const recipesApi = await getAllRecipes();
+    //const recipesApi = await getApiInfo();
+    const recipesApi = await getAllRecipes();
     const dietsApi = recipesApi.map((recipe) => recipe?.diets);
 
     //GUARDA EN EL ARRAY TYPES TODOS LOS TIPOS DE DIETA QUE HAY EN LA API, PERO SIN REPETIR
