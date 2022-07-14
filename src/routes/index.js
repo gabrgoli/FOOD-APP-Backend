@@ -152,6 +152,7 @@ let returnRecipes=[]
           diets: recipe.TipoDeDieta,
           ingredients:recipe2.Ingredients,
           instructions: recipe.instructions,
+          favorite: recipe.favorite
         });
       }
     })
