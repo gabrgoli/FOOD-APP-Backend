@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-let guardarApiEnBDD=false;
+let guardarApiEnBDD=true;
 
 /*const getInstructions = (recipe) =>{
   let texto=''
@@ -428,7 +428,7 @@ router.put("/recipe/update/:id",async (req, res, next) => {
   try {
       const data = req.body;
       const { id } = req.params;
-console.log(data)
+      console.log(data.favorite)
       const updateUser = await Recipe.update(data, {
           where: {
               id
