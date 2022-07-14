@@ -22,12 +22,13 @@ module.exports = (sequelize) => {
       type : DataTypes.TEXT,
       
     },
-    // puntuacion: {
-    //   type:DataTypes.INTEGER,
-    // },
     healthScore: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
+    },
+    favorite: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     instructions: {
       type: DataTypes.ARRAY(DataTypes.STRING),
