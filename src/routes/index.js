@@ -230,6 +230,7 @@ const searchByIdAtDB = async (id) => {
       diets: recipe.TipoDeDieta,
       ingredients:recipe2?.Ingredients,
       instructions: recipe2.instructions,
+      favorite: recipe2.favorite
     };
 
   } catch {
@@ -421,5 +422,31 @@ router.post("/recipe", async (req, res, next) => {
 
   res.json("receta cargada con exito");
 });
+
+
+router.put("/recipe/update/:id",async (req, res, next) => {
+  try {
+      const data = req.body;
+      const { id } = req.params;
+console.log(data)
+      const updateUser = await Recipe.update(data, {
+          where: {
+              id
+          }
+      })
+      
+      updateUser[0] !== 0 ? 
+      res.json('El usuario fue actualizado satisfactoriamente') :
+      res.status(404).json('Hubo un error. La actualizacion no se puedo completar')
+  } catch (error) {
+      next(error)
+  }
+});
+
+
+
+
+
+
 
 module.exports = router;
