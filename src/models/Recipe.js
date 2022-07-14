@@ -28,6 +28,7 @@ module.exports = (sequelize) => {
     },
     favorite: {
       type: DataTypes.BOOLEAN,
+      allowNull: false,
       defaultValue: false,
     },
     instructions: {
